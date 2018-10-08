@@ -3,6 +3,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
+import javafx.scene.chart.BubbleChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.RadioButton;
@@ -26,11 +27,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javax.swing.JRadioButton;
+
+import javax.swing.*;
+
 import javafx.scene.control.ToggleGroup;
+
+import java.awt.event.ActionEvent;
 
 
 public class JavaFX extends Application {
+
+    ToggleGroup answer;
+    int v = 0;
+    RadioButton Bulbasaur, Squirtle, Charmander, Pikachu, Eevee;
 
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
@@ -39,19 +48,23 @@ public class JavaFX extends Application {
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
 
-        RadioButton options[] = new RadioButton[] {
-                new RadioButton("Bulbasaur"),
-                new RadioButton("Squirtle"),
-                new RadioButton("Charmander"),
-                new RadioButton("Pikachu"),
-                new RadioButton("Eevee")
-        };
-
-        for (int i=0; i < options.length; i++) {
-            // Add offset to left side to indent from title
-            VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
-            vbox.getChildren().add(options[i]);
-        }
+        answer = new ToggleGroup();
+        Bulbasaur = new RadioButton("Bulbasaur");
+        Bulbasaur.setToggleGroup(answer);
+        v = 1;
+        Squirtle = new RadioButton("Squirtle");
+        Squirtle.setToggleGroup(answer);
+        v = 2;
+        Charmander = new RadioButton("Charmander");
+        Charmander.setToggleGroup(answer);
+        v = 3;
+        Pikachu = new RadioButton("Pikachu");
+        Pikachu.setToggleGroup(answer);
+        v = 4;
+        Eevee = new RadioButton("Eevee");
+        Eevee.setToggleGroup(answer);
+        v = 5;
+        vbox.getChildren().addAll(Bulbasaur, Squirtle, Charmander, Pikachu, Eevee);
     }
 
     // Adds Save/Cancel buttons to the hbox
@@ -63,7 +76,7 @@ public class JavaFX extends Application {
 
     // Adds 8 icons to a tile pane
     private void Pokemon(TilePane tile) {
-            tile.getChildren().add(new ImageView(new Image("Bulbasaur.png")));
+            tile.getChildren().add(new ImageView(new Image("bulbasaur.png")));
     }
 
     @Override
