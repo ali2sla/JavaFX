@@ -160,7 +160,7 @@ public class JavaFX extends Application {
         // Make a Scene from the BorderPane
         Scene scene = new Scene(border);
         stage.setScene(scene);
-        stage.setTitle("Layout Example");
+        stage.setTitle("Pokemon Selection");
         stage.show();
         //////// Display the Scene ///// END  ///////////////////////////////////////////////
     }
