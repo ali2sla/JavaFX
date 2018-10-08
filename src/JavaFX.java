@@ -5,6 +5,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +26,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.swing.JRadioButton;
+
 
 public class JavaFX extends Application {
 
@@ -81,57 +84,23 @@ public class JavaFX extends Application {
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
 
-        Text title = new Text("Data");
+        Text title = new Text("Professor Oak: What Pokemon do you want to choose?");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
 
-        Hyperlink options[] = new Hyperlink[] {
-                new Hyperlink("Sales"),
-                new Hyperlink("Marketing"),
-                new Hyperlink("Distribution"),
-                new Hyperlink("Costs")};
+        RadioButton options[] = new RadioButton[] {
+                new RadioButton("Bulbasaur"),
+                new RadioButton("Squirtle"),
+                new RadioButton("Charmander"),
+                new RadioButton("Pikachu"),
+                new RadioButton("Eevee")
+        };
 
         for (int i=0; i < options.length; i++) {
             // Add offset to left side to indent from title
             VBox.setMargin(options[i], new Insets(0, 0, 0, 8));
             vbox.getChildren().add(options[i]);
         }
-    }
-
-    // Add text and images to a 4 columns x 3 rows GridPane for the center region
-    // NOTICE: 4x3 grid size is not specified, instead adding to grid tells grid its size
-    private void addTextAndImagesToGrid(GridPane grid) {
-        // "Sales:" category in column 2, row 1
-        Text category = new Text("Sales:");
-        category.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        grid.add(category, 1, 0);
-
-        // "Current Year" title in column 3, row 1
-        Text chartTitle = new Text("Current Year");
-        chartTitle.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        grid.add(chartTitle, 2, 0);
-
-        // "Goods and Services" subtitle in columns 2-3, row 2
-        Text chartSubtitle = new Text("Goods and Services");
-        grid.add(chartSubtitle, 1, 1, 2, 1);
-
-        // "House" icon in column 1, rows 1-2
-        ImageView imageHouse = new ImageView(new Image("house.png"));
-        grid.add(imageHouse, 0, 0, 1, 2);
-
-        // "Goods 80%" left label in column 1 (bottom), row 3
-        Text goodsPercent = new Text("Goods\n80%");
-        GridPane.setValignment(goodsPercent, VPos.BOTTOM);
-        grid.add(goodsPercent, 0, 2);
-
-        // "Pie Chart" icon in columns 2-3, row 3
-        ImageView imageChart = new ImageView(new Image("piechart.png"));
-        grid.add(imageChart, 1, 2, 2, 1);
-
-        // "Services 20%" right label in column 4 (top), row 3
-        Text servicesPercent = new Text("Services\n20%");
-        GridPane.setValignment(servicesPercent, VPos.TOP);
-        grid.add(servicesPercent, 3, 2);
     }
 
     // Adds Save/Cancel buttons to the hbox
@@ -142,10 +111,8 @@ public class JavaFX extends Application {
     }
 
     // Adds 8 icons to a tile pane
-    private void addChartTypeIcons(TilePane tile) {
-        for (int i=0; i < 8; i++) {
-            tile.getChildren().add(new ImageView(new Image("chart_"+(i+1)+".png")));
-        }
+    private void Pokemon(TilePane tile) {
+            tile.getChildren().add(new ImageView(new Image("Bulbasaur.png")));
     }
 
     @Override
@@ -198,8 +165,6 @@ public class JavaFX extends Application {
         centerTopGrid.setHgap(10);
         centerTopGrid.setVgap(10);
         centerTopGrid.setPadding(new Insets(0, 10, 0, 10));
-        // Add the labels and icons to the grid
-        addTextAndImagesToGrid(centerTopGrid);
         // Tell the grid to draw its grid lines for educational purposes
         centerTopGrid.setGridLinesVisible(true);
 
@@ -237,7 +202,7 @@ public class JavaFX extends Application {
         rightTilePane.setStyle("-fx-background-color: DAE6F3;");
 
         // Add 8 icons to TilePane; since column preference is 2, the 8 icons will take 4 rows
-        addChartTypeIcons(rightTilePane);
+        Pokemon(rightTilePane);
 
         // Set the Right region of the BorderPane to be this TilePane
         border.setRight(rightTilePane);
