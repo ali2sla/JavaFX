@@ -27,59 +27,10 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.JRadioButton;
+import javafx.scene.control.ToggleGroup;
 
 
 public class JavaFX extends Application {
-
-    // Adds two buttons to the HBox for the top region
-    private void addCurrentAndProjectedButtons(HBox hbox) {
-        // Create the 2 buttons
-        Button buttonCurrent = new Button("Current");
-        buttonCurrent.setPrefSize(100, 20);
-
-        Button buttonProjected = new Button("Projected");
-        buttonProjected.setPrefSize(100, 20);
-
-        // Add the 2 buttons to the HBox
-        // Since using HBox, the controls will be displayed in a row (horizontally)
-        hbox.getChildren().addAll(buttonCurrent, buttonProjected);
-    }
-
-    // Adds help icon to the right side of the HBox for the top region
-    private void addHelpIconRectangle(HBox hbox) {
-
-        // Use StackPane to be able to layer Rectangle under help ? icon
-        StackPane stack = new StackPane();
-
-        // Create Rectangle that is under the help ? icon
-        Rectangle helpIcon = new Rectangle(30.0, 25.0);
-        helpIcon.setFill(new LinearGradient(0,0,0,1, true, CycleMethod.NO_CYCLE,
-                new Stop[]{
-                        new Stop(0,Color.web("#4977A3")),
-                        new Stop(0.5, Color.web("#B0C6DA")),
-                        new Stop(1,Color.web("#9CB6CF")),}));
-        helpIcon.setStroke(Color.web("#D0E6FA"));
-        helpIcon.setArcHeight(3.5);
-        helpIcon.setArcWidth(3.5);
-
-        // Create the help ? icon which is layered on top of Rectangle
-        Text helpText = new Text("?");
-        helpText.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
-        helpText.setFill(Color.WHITE);
-        helpText.setStroke(Color.web("#7080A0"));
-
-        // Add the Rectangle, then the help ? icon next to the StackPane
-        stack.getChildren().addAll(helpIcon, helpText);
-
-        // Align all of the controls and shapes to the right of the HBox
-        stack.setAlignment(Pos.CENTER_RIGHT);
-        // Add offset to right for question mark to compensate for RIGHT alignment of all nodes
-        StackPane.setMargin(helpText, new Insets(0, 10, 0, 0));
-
-        // Add the StackPane (which has the Rectangle and help ? icon) to the HBox
-        hbox.getChildren().add(stack);
-        HBox.setHgrow(stack, Priority.ALWAYS);
-    }
 
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
@@ -131,9 +82,6 @@ public class JavaFX extends Application {
         topHBox.setSpacing(10);                                                // Gap between nodes
         topHBox.setStyle("-fx-background-color: #336699;");                    // Change background color
 
-        // Add the buttons and help icon to the HBox
-        addCurrentAndProjectedButtons(topHBox);
-        addHelpIconRectangle(topHBox);
 
         // Set the Top region of the BorderPane to be this HBox
         border.setTop(topHBox);
@@ -166,7 +114,7 @@ public class JavaFX extends Application {
         centerTopGrid.setVgap(10);
         centerTopGrid.setPadding(new Insets(0, 10, 0, 10));
         // Tell the grid to draw its grid lines for educational purposes
-        centerTopGrid.setGridLinesVisible(true);
+        centerTopGrid.setGridLinesVisible(false);
 
         // HBox will layout Save/Cancel buttons horizontally
         HBox saveCancelButtonsHBox = new HBox();
