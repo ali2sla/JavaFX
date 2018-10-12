@@ -82,7 +82,8 @@ public class JavaFX extends Application {
     void selectPicture(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        fileChooser.showOpenDialog(stage);
+        fileChooser.showOpenDialog(stage).getAbsolutePath();
+        // myImageView.setImage(new Image());
     }
 
     // Adds Save/Cancel buttons to the hbox
