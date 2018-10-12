@@ -71,11 +71,18 @@ public class JavaFX extends Application {
         new ImageView(new Image( answer + ".png"));
     }
 
+    void selectPicture() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.showOpenDialog(stage);
+    }
+
     // Adds Save/Cancel buttons to the hbox
     private void addSaveCancelButtons(HBox hb) {
         Button buttonSave = new Button("Save");
         buttonSave.setOnAction(e->updatePicture());
         Button buttonSelect = new Button("Select");
+        buttonSelect.setOnAction(e->selectPicture());
         Button buttonCancel = new Button("Cancel");
         hb.getChildren().addAll(buttonSave, buttonSelect, buttonCancel);
     }
