@@ -38,6 +38,8 @@ public class JavaFX extends Application {
     ToggleGroup answer;
     int v = 0;
     RadioButton Bulbasaur, Squirtle, Charmander, Pikachu, Eevee;
+    Scene scene;
+    ImageView myImageView;
 
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
@@ -48,48 +50,55 @@ public class JavaFX extends Application {
 
         answer = new ToggleGroup();
         Bulbasaur = new RadioButton("Bulbasaur");
+        Bulbasaur.setUserData("bulbasaur");
         Bulbasaur.setToggleGroup(answer);
-        v = 1;
+
         Squirtle = new RadioButton("Squirtle");
+        Squirtle.setUserData("squirtle");
         Squirtle.setToggleGroup(answer);
-        v = 2;
+
         Charmander = new RadioButton("Charmander");
+        Charmander.setUserData("charmander");
         Charmander.setToggleGroup(answer);
-        v = 3;
+
         Pikachu = new RadioButton("Pikachu");
+        Pikachu.setUserData("pikachu");
         Pikachu.setToggleGroup(answer);
-        v = 4;
+
         Eevee = new RadioButton("Eevee");
+        Eevee.setUserData("eevee");
         Eevee.setToggleGroup(answer);
-        v = 5;
+
         vbox.getChildren().addAll(Bulbasaur, Squirtle, Charmander, Pikachu, Eevee);
     }
 
     // Update picture
     private void updatePicture() {
-        System.out.println();
-        new ImageView(new Image( answer + ".png"));
+        System.out.println(answer.getSelectedToggle());
+        System.out.println(answer.getSelectedToggle().getUserData().toString() + ".png");
+        myImageView.setImage(new Image( answer.getSelectedToggle().getUserData().toString() + ".png"));
     }
 
-    void selectPicture() {
+    void selectPicture(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.showOpenDialog(stage);
     }
 
     // Adds Save/Cancel buttons to the hbox
-    private void addSaveCancelButtons(HBox hb) {
+    private void addSaveCancelButtons(HBox hb, Stage stage) {
         Button buttonSave = new Button("Save");
         buttonSave.setOnAction(e->updatePicture());
         Button buttonSelect = new Button("Select");
-        buttonSelect.setOnAction(e->selectPicture());
+        buttonSelect.setOnAction(e->selectPicture(stage));
         Button buttonCancel = new Button("Cancel");
         hb.getChildren().addAll(buttonSave, buttonSelect, buttonCancel);
     }
 
     // Adds 8 icons to a tile pane
     private void Pokemon(TilePane tile) {
-            tile.getChildren().add(new ImageView(new Image("bulbasaur.png")));
+        myImageView = new ImageView(new Image("bulbasaur.png"));
+            tile.getChildren().add(myImageView);
     }
 
     @Override
@@ -148,7 +157,7 @@ public class JavaFX extends Application {
         saveCancelButtonsHBox.setPadding(new Insets(0, 10, 10, 10));
         saveCancelButtonsHBox.setSpacing(10);
         // Add the Save/Cancel buttons to the hbox
-        addSaveCancelButtons(saveCancelButtonsHBox);
+        addSaveCancelButtons(saveCancelButtonsHBox, stage);
 
         // Add the grid and the hbox to AnchorPane
         centerAnchorPane.getChildren().addAll(centerTopGrid, saveCancelButtonsHBox);
