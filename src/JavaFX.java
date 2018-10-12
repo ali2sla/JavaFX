@@ -27,11 +27,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.stage.FileChooser;
 import javax.swing.*;
-
 import javafx.scene.control.ToggleGroup;
-
 import java.awt.event.ActionEvent;
 
 
@@ -44,26 +42,26 @@ public class JavaFX extends Application {
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
 
-        Text title = new Text("Professor Oak: What Pokmon do you want to choose?");
+        Text title = new Text("Professor Oak: What Pokemon do you want to choose?");
         title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         vbox.getChildren().add(title);
 
         answer = new ToggleGroup();
         Bulbasaur = new RadioButton("Bulbasaur");
         Bulbasaur.setToggleGroup(answer);
-
+        v = 1;
         Squirtle = new RadioButton("Squirtle");
         Squirtle.setToggleGroup(answer);
-
+        v = 2;
         Charmander = new RadioButton("Charmander");
         Charmander.setToggleGroup(answer);
-
+        v = 3;
         Pikachu = new RadioButton("Pikachu");
         Pikachu.setToggleGroup(answer);
-
+        v = 4;
         Eevee = new RadioButton("Eevee");
         Eevee.setToggleGroup(answer);
-
+        v = 5;
         vbox.getChildren().addAll(Bulbasaur, Squirtle, Charmander, Pikachu, Eevee);
     }
 
@@ -77,13 +75,14 @@ public class JavaFX extends Application {
     private void addSaveCancelButtons(HBox hb) {
         Button buttonSave = new Button("Save");
         buttonSave.setOnAction(e->updatePicture());
+        Button buttonSelect = new Button("Select");
         Button buttonCancel = new Button("Cancel");
-        hb.getChildren().addAll(buttonSave, buttonCancel);
+        hb.getChildren().addAll(buttonSave, buttonSelect, buttonCancel);
     }
 
     // Adds 8 icons to a tile pane
     private void Pokemon(TilePane tile) {
-            tile.getChildren().add(new ImageView(new Image( "Bulbasaur" + ".png")));
+            tile.getChildren().add(new ImageView(new Image("bulbasaur.png")));
     }
 
     @Override
@@ -180,7 +179,7 @@ public class JavaFX extends Application {
         // Make a Scene from the BorderPane
         Scene scene = new Scene(border);
         stage.setScene(scene);
-        stage.setTitle("Pokémon Selection");
+        stage.setTitle("Pokemon Selection");
         stage.show();
         //////// Display the Scene ///// END  ///////////////////////////////////////////////
     }
