@@ -31,6 +31,7 @@ import javafx.stage.FileChooser;
 import javax.swing.*;
 import javafx.scene.control.ToggleGroup;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 
 public class JavaFX extends Application {
@@ -40,6 +41,7 @@ public class JavaFX extends Application {
     RadioButton Bulbasaur, Squirtle, Charmander, Pikachu, Eevee;
     Scene scene;
     ImageView myImageView;
+    String file;
 
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
@@ -82,8 +84,8 @@ public class JavaFX extends Application {
     void selectPicture(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        fileChooser.showOpenDialog(stage).getAbsolutePath();
-        // myImageView.setImage(new Image());
+        file = new File(fileChooser.showOpenDialog(stage).getAbsolutePath()).toURI().toString();
+        myImageView.setImage(new Image(file));
     }
 
     // Adds Save/Cancel buttons to the hbox
