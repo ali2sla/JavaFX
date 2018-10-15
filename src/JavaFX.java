@@ -41,7 +41,7 @@ public class JavaFX extends Application {
     RadioButton Bulbasaur, Squirtle, Charmander, Pikachu, Eevee;
     Scene scene;
     ImageView myImageView;
-    String file;
+    String picture;
 
     // Adds a list of links to the VBox for the left region
     private void addVerticalListOfLinks(VBox vbox) {
@@ -84,8 +84,8 @@ public class JavaFX extends Application {
     void selectPicture(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-        file = new File(fileChooser.showOpenDialog(stage).getAbsolutePath()).toURI().toString();
-        myImageView.setImage(new Image(file));
+        picture = new File(fileChooser.showOpenDialog(stage).getAbsolutePath()).toURI().toString();
+        myImageView.setImage(new Image(picture));
     }
 
     // Adds Save/Cancel buttons to the hbox
